@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Database\Queries\QueryTools;
+namespace src\Database\Queries\QueryTools;
 
 use PDO;
 
