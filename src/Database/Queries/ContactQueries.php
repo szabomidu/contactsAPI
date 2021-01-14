@@ -41,4 +41,12 @@ class ContactQueries
                 "phoneNumber" => $input["phone_number"],
                 "address" => $input["address"]]);
     }
+
+    public function updateContact(?PDO $PDO, $input, $id)
+    {
+        $sql = "UPDATE contacts 
+                SET email = :email
+                WHERE id = :id";
+        QueryTool::execute($PDO, $sql, ["email" => $input["email"], "id" => $id]);
+    }
 }
