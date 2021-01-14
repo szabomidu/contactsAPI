@@ -30,4 +30,15 @@ class ContactQueries
                 FROM contacts";
         return QueryTool::queryAll($PDO, $sql);
     }
+
+    public function createNewContact(?PDO $PDO, $input)
+    {
+        $sql = "INSERT INTO contacts(name, email, phone_number, address)
+                VALUES (:name, :email, :phoneNumber, :address)";
+        return QueryTool::executeReturningId($PDO, $sql,
+            ["name" => $input["name"],
+                "email" => $input["email"],
+                "phoneNumber" => $input["phone_number"],
+                "address" => $input["address"]]);
+    }
 }
