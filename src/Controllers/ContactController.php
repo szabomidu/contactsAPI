@@ -13,7 +13,7 @@ use src\Database\Queries\ContactQueries;
 /**
  * Class ContactController
  *
- * ContactControllers task is to call the corresponding ContactQuery method
+ * ContactController's task is to call the corresponding ContactQuery method
  * and return the result of it and a response header.
  *
  * @package src\Controllers
