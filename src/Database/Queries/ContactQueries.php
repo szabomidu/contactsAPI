@@ -20,4 +20,14 @@ class ContactQueries
                 WHERE id = :id";
         return QueryTool::queryOne($PDO, $sql, ["id" => $id]);
     }
+
+    public function getAllContacts(?PDO $PDO)
+    {
+        $sql = "SELECT name,
+                        email,
+                        phone_number,
+                        address
+                FROM contacts";
+        return QueryTool::queryAll($PDO, $sql);
+    }
 }
