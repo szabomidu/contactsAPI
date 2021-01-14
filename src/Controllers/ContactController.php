@@ -40,4 +40,12 @@ class ContactController
         $response['body'] = $result;
         return $response;
     }
+
+    public function createContact($input)
+    {
+        $result = $this->contactQueries->createNewContact($this->PDO, $input);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = $result;
+        return $response;
+    }
 }
