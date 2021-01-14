@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Database\Connection;
+namespace src\Database\Connection;
+require "src/Exception/DatabaseException.php";
 
-
-use Exception\DatabaseException;
 use PDO;
 use PDOException;
+use src\Exception\DatabaseException;
 
 /**
  * Class Connection

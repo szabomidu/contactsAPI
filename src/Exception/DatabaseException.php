@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Exception;
+namespace src\Exception;
 
 
 /**

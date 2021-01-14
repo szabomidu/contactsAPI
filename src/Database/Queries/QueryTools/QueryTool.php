@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Database\Queries\QueryTools;
+namespace src\Database\Queries\QueryTools;
 
 use PDO;
 
@@ -16,6 +16,22 @@ use PDO;
  */
 class QueryTool
 {
+    /**
+     * Execute SQL statement with returning the last inserted ID.
+     *
+     * @param PDO $pdo PDO instance
+     * @param string $sqlStatement desired query (SQL statement) in string format
+     * @param array $variables variables to place into the prepared statement (associative array)
+     * @return string
+     */
+    public static function executeReturningId(PDO $pdo, string $sqlStatement, array $variables = array())
+    {
+        $preparedStatement = $pdo->prepare($sqlStatement);
+        $preparedStatement->execute($variables);
+        return $pdo->lastInsertId();
+    }
+
+
     /**
      * Execute SQL statement without returning any data.
      *
