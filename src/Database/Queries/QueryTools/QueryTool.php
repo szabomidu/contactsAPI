@@ -8,7 +8,7 @@ use PDO;
 /**
  * Class QueryTool
  *
- * QueryTools task is to abstract away details of database operation.
+ * QueryTool's task is to abstract away details of database operation.
  * Consists of three methods, each representing a common option of executing
  * SQL statements.
  *
