@@ -48,4 +48,12 @@ class ContactController
         $response['body'] = $result;
         return $response;
     }
+
+    public function updateContact($contactId, $input)
+    {
+        $this->contactQueries->updateContact($this->PDO, $input, $contactId);
+        $response['status_code_header'] = 'HTTP/1.1 200 OK';
+        $response['body'] = $contactId;
+        return $response;
+    }
 }
