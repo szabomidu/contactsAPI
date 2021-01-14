@@ -15,6 +15,7 @@ CREATE TABLE `contacts`
 (
     `id`           INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
     `name`         TEXT             NOT NULL,
+    `email`        varchar(30)      NOT NULL,
     `phone_number` VARCHAR(15)      NOT NULL,
     `address`      VARCHAR(250)     NOT NULL,
     PRIMARY KEY (`id`)
