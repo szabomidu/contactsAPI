@@ -57,7 +57,7 @@ class QueryTool
     {
         $preparedStatement = $pdo->prepare($sqlStatement);
         $preparedStatement->execute($variables);
-        return $preparedStatement->fetchAll();
+        return $preparedStatement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -72,6 +72,6 @@ class QueryTool
     {
         $preparedStatement = $pdo->prepare($sqlStatement);
         $preparedStatement->execute($variables);
-        return $preparedStatement->fetch();
+        return $preparedStatement->fetch(PDO::FETCH_ASSOC);
     }
 }
