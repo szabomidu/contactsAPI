@@ -73,12 +73,10 @@ class ContactController
      * @param $input array associative array containing user input
      * @return array response data
      */
-    public function createContact(array $input)
+    public function createContact(array $input): array
     {
         $result = $this->contactQueries->createNewContact($this->PDO, $input);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = $result;
-        return $response;
+        return $this->responseFactory->createResponse("200", (array)$result);
     }
 
     /**
