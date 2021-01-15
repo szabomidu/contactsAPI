@@ -67,21 +67,8 @@ class Router
                     return $this->contactController->updateContact($contactId, $input);
                 }
             default:
-                return $this->notFoundResponse();
+                return $this->responseFactory->createResponse("404", null);
         }
-    }
-
-    /**
-     * If the request method was not one of which the API can handle the processRequest
-     * method calls notFoundResponse to return 404 error.
-     *
-     * @return array response data
-     */
-    private function notFoundResponse()
-    {
-        $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
-        $response['body'] = null;
-        return $response;
     }
 
     /**
