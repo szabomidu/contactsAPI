@@ -5,8 +5,11 @@ namespace src\Controllers;
 
 require "src/Database/Connection/Connection.php";
 require "src/Database/Queries/ContactQueries.php";
+require "src/Response/ResponseFactory.php";
+
 
 use PDO;
+use src\Response\ResponseFactory;
 use src\Database\Connection\Connection;
 use src\Database\Queries\ContactQueries;
 
@@ -20,8 +23,9 @@ use src\Database\Queries\ContactQueries;
  */
 class ContactController
 {
-    private ?PDO $PDO = null;
-    private ?ContactQueries $contactQueries = null;
+    private ?PDO $PDO;
+    private ?ContactQueries $contactQueries;
+    private ResponseFactory $responseFactory;
 
     /**
      * ContactController constructor.
@@ -34,6 +38,7 @@ class ContactController
         $connection = new Connection();
         $this->PDO = $connection->getConnection();
         $this->contactQueries = new ContactQueries();
+        $this->responseFactory = new ResponseFactory();
     }
 
     /**
