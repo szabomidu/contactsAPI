@@ -51,9 +51,7 @@ class ContactController
     public function getContactById(int $contactId): array
     {
         $result = $this->contactQueries->findContactById($this->PDO, $contactId);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = $result;
-        return $response;
+        return $this->responseFactory->createResponse("200", $result);
     }
 
     /**
