@@ -61,7 +61,7 @@ class QueryTool
     }
 
     /**
-     * Execute SQL statement, returning single records.
+     * Execute SQL statement, returning a single record.
      *
      * @param PDO $pdo PDO instance
      * @param string $sqlStatement desired query (SQL statement) in string format

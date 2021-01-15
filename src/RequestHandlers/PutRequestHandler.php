@@ -4,6 +4,10 @@ namespace src\RequestHandlers;
 use src\Controllers\ContactController;
 use src\Response\ResponseFactory;
 
+/**
+ * Class PutRequestHandler's task is to handle PUT requests.
+ * @package src\RequestHandlers
+ */
 class PutRequestHandler
 {
     private ContactController $contactController;
@@ -11,6 +15,9 @@ class PutRequestHandler
 
     /**
      * GetRequestHandler constructor.
+     *
+     * Sets a new instance of ContactController as a private field.
+     * Sets a new instance of ResponseFactory as a private field.
      */
     public function __construct()
     {
@@ -19,13 +26,16 @@ class PutRequestHandler
     }
 
     /**
-     * @param $input
-     * @param $contactId
+     * This method is called from Router class. If input data is valid,
+     * calls createContact method, returns response with 422 status otherwise.
+     *
+     * @param array $input associative array containing user input
+     * @param int|null $contactId id passed into the URL
      * @return array
      */
-    public function receiveRequest($input, $contactId): array
+    public function receiveRequest(array $input, ?int $contactId): array
     {
-        return !$this->validateInput($input)
+        return !$this->validateInput($input) || !$contactId
             ? $this->responseFactory->createResponse("422",
                 ['error' => 'Invalid input! All fields are required.'])
             : $this->contactController->updateContact($contactId, $input);
