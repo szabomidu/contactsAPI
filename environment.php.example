@@ -6,3 +6,4 @@ $_ENV["DB_PORT"]="3306";
 $_ENV["DB_DATABASE"]="dbname";
 $_ENV["DB_USERNAME"]="username";
 $_ENV["DB_PASSWORD"]="password";
+$_ENV["PATH_TO_LOGFILES"]="path/to/log/files";
