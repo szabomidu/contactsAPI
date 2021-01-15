@@ -11,8 +11,8 @@ use src\Response\ResponseFactory;
 /**
  * Class Router
  *
- * Router class is responsible for calling the right method depending on the
- * request method and the URI parameters.
+ * Router class is responsible for calling the right request handler on the
+ * request methods.
  *
  * @package src\Router
  */
@@ -25,7 +25,9 @@ class Router
     /**
      * Router constructor.
      *
-     * Sets a new instance of ContactController to private field $contactController
+     * Sets a new instance of ContactController to private field $contactController.
+     * Sets a new instance of RequestWithBodyHandler to private field $requestWithBodyHandler.
+     * Sets a new instance of GetRequestHandler to private field $getRequestHandler.
      */
     public function __construct()
     {
@@ -35,8 +37,7 @@ class Router
     }
 
     /**
-     * ProcessRequest method calls the correct method depending on the request
-     * and whether or not contactId is present.
+     * ProcessRequest method calls the correct request handler depending on the request method.
      *
      * @param $requestMethod string request method
      * @param int|null $contactId integer id from URL or null if not present
