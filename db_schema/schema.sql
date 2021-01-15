@@ -18,5 +18,6 @@ CREATE TABLE `contacts`
     `email`        varchar(30)      NOT NULL,
     `phone_number` VARCHAR(15)      NOT NULL,
     `address`      VARCHAR(250)     NOT NULL,
+    `created`      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`)
 );
