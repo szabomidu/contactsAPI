@@ -5,8 +5,11 @@ namespace src\Controllers;
 
 require "src/Database/Connection/Connection.php";
 require "src/Database/Queries/ContactQueries.php";
+require "src/Response/ResponseFactory.php";
+
 
 use PDO;
+use src\Response\ResponseFactory;
 use src\Database\Connection\Connection;
 use src\Database\Queries\ContactQueries;
 
@@ -20,8 +23,9 @@ use src\Database\Queries\ContactQueries;
  */
 class ContactController
 {
-    private ?PDO $PDO = null;
-    private ?ContactQueries $contactQueries = null;
+    private ?PDO $PDO;
+    private ?ContactQueries $contactQueries;
+    private ResponseFactory $responseFactory;
 
     /**
      * ContactController constructor.
@@ -34,6 +38,7 @@ class ContactController
         $connection = new Connection();
         $this->PDO = $connection->getConnection();
         $this->contactQueries = new ContactQueries();
+        $this->responseFactory = new ResponseFactory();
     }
 
     /**
@@ -46,9 +51,7 @@ class ContactController
     public function getContactById(int $contactId): array
     {
         $result = $this->contactQueries->findContactById($this->PDO, $contactId);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = $result;
-        return $response;
+        return $this->responseFactory->createResponse("200", $result);
     }
 
     /**
@@ -57,12 +60,10 @@ class ContactController
      *
      * @return array response data
      */
-    public function getAllContacts()
+    public function getAllContacts(): array
     {
         $result = $this->contactQueries->getAllContacts($this->PDO);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = $result;
-        return $response;
+        return $this->responseFactory->createResponse("200", $result);
     }
 
     /**
@@ -72,27 +73,23 @@ class ContactController
      * @param $input array associative array containing user input
      * @return array response data
      */
-    public function createContact(array $input)
+    public function createContact(array $input): array
     {
         $result = $this->contactQueries->createNewContact($this->PDO, $input);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = $result;
-        return $response;
+        return $this->responseFactory->createResponse("200", (array)$result);
     }
 
     /**
      * Calls ContactQueries updateContact method, sets response header to 200 OK,
      * sets response body to the result from the queries method.
      *
-     * @param $contactId integer id of the contact to be updated
+     * @param int $contactId id of the contact to be updated
      * @param $input array associative array containing user input
      * @return array response data
      */
-    public function updateContact(int $contactId, array $input)
+    public function updateContact(int $contactId, array $input): array
     {
         $this->contactQueries->updateContact($this->PDO, $input, $contactId);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = $contactId;
-        return $response;
+        return $this->responseFactory->createResponse("200", (array)$contactId);
     }
 }
