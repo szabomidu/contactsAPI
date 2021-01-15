@@ -1,0 +1,8 @@
+<?php
+
+$_ENV["DB_CONNECTION"]="mysql";
+$_ENV["DB_HOST"]="127.0.0.1";
+$_ENV["DB_PORT"]="3306";
+$_ENV["DB_DATABASE"]="dbname";
+$_ENV["DB_USERNAME"]="username";
+$_ENV["DB_PASSWORD"]="password";

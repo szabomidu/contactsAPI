@@ -3,6 +3,7 @@
 
 namespace src\Database\Connection;
 require "src/Exception/DatabaseException.php";
+require "environment.php";
 
 use PDO;
 use PDOException;
@@ -29,11 +30,11 @@ class Connection
      */
     public function __construct()
     {
-        $database = getenv('DB_DATABASE');
-        $host = getenv('DB_HOST');
-        $port = getenv('DB_PORT');
-        $username = getenv('DB_USERNAME');
-        $password = getenv('DB_PASSWORD');
+        $database = $_ENV['DB_DATABASE'];
+        $host = $_ENV['DB_HOST'];
+        $port = $_ENV['DB_PORT'];
+        $username = $_ENV['DB_USERNAME'];
+        $password = $_ENV['DB_PASSWORD'];
 
         try {
             $this->dbConnection = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $database, $username, $password);
