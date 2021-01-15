@@ -83,15 +83,13 @@ class ContactController
      * Calls ContactQueries updateContact method, sets response header to 200 OK,
      * sets response body to the result from the queries method.
      *
-     * @param $contactId integer id of the contact to be updated
+     * @param int $contactId id of the contact to be updated
      * @param $input array associative array containing user input
      * @return array response data
      */
-    public function updateContact(int $contactId, array $input)
+    public function updateContact(int $contactId, array $input): array
     {
         $this->contactQueries->updateContact($this->PDO, $input, $contactId);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = $contactId;
-        return $response;
+        return $this->responseFactory->createResponse("200", (array)$contactId);
     }
 }
