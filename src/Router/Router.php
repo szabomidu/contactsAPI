@@ -4,6 +4,7 @@ namespace src\Router;
 require "src/Controllers/ContactController.php";
 
 use src\Controllers\ContactController;
+use src\Response\ResponseFactory;
 
 /**
  * Class Router
@@ -16,6 +17,7 @@ use src\Controllers\ContactController;
 class Router
 {
     private ContactController $contactController;
+    private ResponseFactory $responseFactory;
 
     /**
      * Router constructor.
@@ -25,6 +27,7 @@ class Router
     public function __construct()
     {
         $this->contactController = new ContactController();
+        $this->responseFactory = new ResponseFactory();
 
     }
 
