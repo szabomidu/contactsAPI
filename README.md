@@ -1,6 +1,11 @@
 # BackendTest
 Delocal Zrt. - PHP Fejlesztői teszt
 
+## Used Technology
+
+- MySQL: version 8.0.22
+- PHP: version 7.4.12
+
 ## Contacts API
 
 **The task:**
