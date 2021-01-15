@@ -51,14 +51,18 @@ class Router
             case 'POST':
                 $input = (array)json_decode(file_get_contents('php://input'), TRUE);
                 if (!$this->validateInput($input)) {
-                    return $this->unprocessableEntityResponse();
+                    return $this->responseFactory->createResponse("422", [
+                        'error' => 'Invalid input! All fields are required.'
+                    ]);
                 } else {
                     return $this->contactController->createContact($input);
                 }
             case 'PUT':
                 $input = (array)json_decode(file_get_contents('php://input'), TRUE);
                 if (!$this->validateUpdateInput($input)) {
-                    return $this->unprocessableEntityResponse();
+                    return $this->responseFactory->createResponse("422", [
+                        'error' => 'Invalid input! All fields are required.'
+                    ]);
                 } else {
                     return $this->contactController->updateContact($contactId, $input);
                 }
@@ -117,21 +121,5 @@ class Router
             return false;
         }
         return true;
-    }
-
-    /**
-     * If the passed in user input not matches the requirements
-     * processRequest method calls unprocessableEntityResponse to return
-     * with 422 Unprocessable error
-     *
-     * @return array response data
-     */
-    private function unprocessableEntityResponse()
-    {
-        $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
-        $response['body'] = json_encode([
-            'error' => 'Invalid input! All fields are required.'
-        ]);
-        return $response;
     }
 }
