@@ -35,10 +35,10 @@ class RequestsWithBodyHandler
      * receive method with the required arguments depending on the request method.
      *
      * @param string $requestMethod request method in string format
-     * @param int $contactId id passed into the URL
+     * @param int|null $contactId id passed into the URL
      * @return array response
      */
-    public function receiveRequest(string $requestMethod, int $contactId): array
+    public function receiveRequest(string $requestMethod, ?int $contactId): array
     {
         return $requestMethod === 'PUT'
             ? $this->putRequestHandler->receiveRequest($this->input, $contactId)
