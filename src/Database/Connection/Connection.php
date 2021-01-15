@@ -30,17 +30,10 @@ class Connection
      */
     public function __construct()
     {
-        $database = $_ENV['DB_DATABASE'];
-        $host = $_ENV['DB_HOST'];
-        $port = $_ENV['DB_PORT'];
-        $username = $_ENV['DB_USERNAME'];
-        $password = $_ENV['DB_PASSWORD'];
-
         try {
-            $this->dbConnection = new PDO("mysql:host=" . $host . ";port=" . $port . ";dbname=" . $database, $username, $password);
+            $this->dbConnection = new PDO("mysql:host=" . $_ENV['DB_HOST'] . ";port=" . $_ENV['DB_PORT'] . ";dbname=" . $_ENV['DB_DATABASE'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
         } catch (PDOException $exception) {
-            $errorMessage = "Error while trying to connect to database!";
-            throw new DatabaseException($errorMessage);
+            throw new DatabaseException("Error while trying to connect to database!");
         }
     }
 
