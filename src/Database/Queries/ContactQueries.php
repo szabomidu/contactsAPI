@@ -25,7 +25,8 @@ class ContactQueries
      */
     public function findContactById(?PDO $PDO, int $id)
     {
-        $sql = "SELECT name,
+        $sql = "SELECT id,
+                        name,
                         email,
                         phone_number,
                         address
@@ -42,7 +43,8 @@ class ContactQueries
      */
     public function getAllContacts(?PDO $PDO)
     {
-        $sql = "SELECT name,
+        $sql = "SELECT id,
+                        name,
                         email,
                         phone_number,
                         address
