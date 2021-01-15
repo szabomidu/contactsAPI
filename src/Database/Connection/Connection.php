@@ -3,9 +3,11 @@
 
 namespace src\Database\Connection;
 require "src/Exception/DatabaseException.php";
+require "src/Logger/Logger.php";
 require "environment.php";
 
 use PDO;
+use src\Logger\Logger;
 use PDOException;
 use src\Exception\DatabaseException;
 
@@ -30,9 +32,11 @@ class Connection
      */
     public function __construct()
     {
+        $logger = new Logger();
         try {
             $this->dbConnection = new PDO("mysql:host=" . $_ENV['DB_HOST'] . ";port=" . $_ENV['DB_PORT'] . ";dbname=" . $_ENV['DB_DATABASE'], $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD']);
         } catch (PDOException $exception) {
+            $logger->logError("Error while trying to connect to database!");
             throw new DatabaseException("Error while trying to connect to database!");
         }
     }
