@@ -17,7 +17,7 @@ use src\Database\Queries\ContactQueries;
  * Class ContactController
  *
  * ContactController's task is to call the corresponding ContactQuery method
- * and return the result of it and a response header.
+ * and return the result of it as a response.
  *
  * @package src\Controllers
  */
@@ -32,6 +32,7 @@ class ContactController
      *
      * Sets instance of PDO as private parameter $PDO.
      * Sets ContactQueries' instance as private parameter $contactQueries.
+     * Sets ResponseFactory's instance as private parameter $responseFactory.
      */
     public function __construct()
     {
@@ -42,8 +43,8 @@ class ContactController
     }
 
     /**
-     * Calls ContactQueries findContactById method, sets response header to 200 OK,
-     * sets response body to the result from the queries method.
+     * Calls ContactQueries findContactById method, calls responseFactory's
+     * createResponse method with 200 status and result as body.
      *
      * @param $contactId Integer id of the desired contact
      * @return array response data
@@ -55,8 +56,8 @@ class ContactController
     }
 
     /**
-     * Calls ContactQueries getAllContacts method, sets response header to 200 OK,
-     * sets response body to the result from the queries method.
+     * Calls ContactQueries getAllContacts method, calls responseFactory's
+     * createResponse method with 200 status and result as body.
      *
      * @return array response data
      */
@@ -67,8 +68,8 @@ class ContactController
     }
 
     /**
-     * Calls ContactQueries createNewContact method, sets response header to 200 OK,
-     * sets response body to the result from the queries method.
+     * Calls ContactQueries createNewContact method, calls responseFactory's
+     * createResponse method with 200 status and result as body.
      *
      * @param $input array associative array containing user input
      * @return array response data
@@ -80,8 +81,8 @@ class ContactController
     }
 
     /**
-     * Calls ContactQueries updateContact method, sets response header to 200 OK,
-     * sets response body to the result from the queries method.
+     * Calls ContactQueries updateContact method, calls responseFactory's
+     * createResponse method with 200 status and result as body.
      *
      * @param int $contactId id of the contact to be updated
      * @param $input array associative array containing user input
