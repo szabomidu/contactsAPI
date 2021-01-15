@@ -6,7 +6,8 @@ use src\Response\ResponseFactory;
 use src\Controllers\ContactController;
 
 /**
- * Class PostRequestHandler
+ * Class PostRequestHandler's task is to handle POST requests.
+ *
  * @package src\RequestHandlers
  */
 class PostRequestHandler
@@ -16,6 +17,8 @@ class PostRequestHandler
 
     /**
      * GetRequestHandler constructor.
+     * Sets a new instance of ContactController as a private field.
+     * Sets a new instance of ResponseFactory as a private field.
      */
     public function __construct()
     {
@@ -24,10 +27,13 @@ class PostRequestHandler
     }
 
     /**
-     * @param $input
-     * @return array
+     * This method is called from Router class. If input data is valid,
+     * calls createContact method, returns response with 422 status otherwise.
+     *
+     * @param array $input associative array containing user input
+     * @return array response
      */
-    public function receiveRequest($input): array
+    public function receiveRequest(array $input): array
     {
         return !$this->validateInput($input)
             ? $this->responseFactory->createResponse("422",
@@ -36,8 +42,7 @@ class PostRequestHandler
     }
 
     /**
-     * If the request method is POST processRequest method calls validateInput method
-     * to check if all required input data is present.
+     * This method checks if all required input data is present.
      *
      * @param array $input associative array containing user input
      * @return bool true if all required data is present, false otherwise
