@@ -60,12 +60,10 @@ class ContactController
      *
      * @return array response data
      */
-    public function getAllContacts()
+    public function getAllContacts(): array
     {
         $result = $this->contactQueries->getAllContacts($this->PDO);
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = $result;
-        return $response;
+        return $this->responseFactory->createResponse("200", $result);
     }
 
     /**
